@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="Huooo">
+    <meta name="description" content="Huooo">
+    <meta name="author" content="Huooo">
+    <title>Huooo</title>
+
+    <link rel=" shortcut icon" href="">
+
+    <!-- css files -->
+    <!-- css style -->
+    <style>
+        body,p,ul,ol,li{
+            margin: 0;padding: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        body{
+            font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+        }
+        .back-btn{
+            position: absolute;top: 0;left: 0;
+            cursor: pointer;
+        }
+        .m-feedback{
+            padding: 2rem 1.4rem 0;
+            font-size: .7rem;color: #2296e8;;
+        }
+        .m-feedback>div{
+            margin-bottom: 1.6rem;
+        }
+        .m-feedback>div:last-child{
+            margin-bottom: 0;
+        }
+        .m-feedback label{
+            display: block;
+            color: #2296e8;
+        }
+        .m-feedback input,.m-feedback textarea{
+            width: 97%;height: 1.5rem;
+            margin: .3rem auto;padding-left: 3%;
+            border: 1px solid #ccc;border-radius: .2rem;
+            outline: none;
+        }
+        .m-feedback .form-feedback{
+            height: 5rem;
+            padding-top: .3rem;
+            resize: none;
+        }
+        .btn-submit-wrapper{
+            text-align: center;
+        }
+        .btn-submit{
+            display: inline-block;
+            padding: .4rem 1rem;margin: 2rem auto 0;
+            color: #fff;
+            border-radius: .3rem;
+            background-color: #2296e8;
+            cursor: pointer;
+        }
+        .modal-alert-wrapper{
+            position: fixed;top: 0;left: 0;
+            display:none;width: 100%;height: 100%;
+            background-color:rgba(0,0,0,.5);
+        }
+        .modal-alert{
+            position: relative;
+            width: 40%;min-height: 2rem;
+            margin: 5rem auto;padding: 2rem;
+            border-radius: .3rem;
+            text-align: center;
+            background-color: rgba(255,255,255,1);
+        }
+        .modal-close{
+            position: absolute;top: 7rem;left: 4.5rem;
+            display: inline-block;
+            width: 1.6rem;height: 1.6rem;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity:1;
+            font-size: 1.2rem;color: #ccc;text-align: center;line-height: 1.6rem;
+        }
+    </style>
+</head>
+<body>
+    <div class='main m-feedback'>
+        <div>
+            <label for="nickname">Nickname : </label>
+            <input id='nickname' type="text" placeholder="nickname" disabled>
+        </div>
+        <div>
+            <label for="feedback">Your Feedback : </label>
+            <textarea id='feedback' class='form-feedback' name="" placeholder="Please enter your feedback..."></textarea>
+        </div>
+        <div>
+            Non-Urgent Feedback Only - For all other issues please contact your Operator.
+        </div>
+        <div class='btn-submit-wrapper'>
+            <span class='btn-submit'>Submit</span>
+        </div>
+    </div>
+
+<!-- js files -->
+<script type="text/javascript" src='http://lib.baomitu.com/zepto/1.1.7/zepto.min.js'></script>
+<script type="text/javascript" src="https://g.alicdn.com/dingding/open-develop/1.5.1/dingtalk.js"></script>
+
+
+<!-- js script -->
+<script>
+    /* --- root fontSize begin --- */
+    (function (doc, win) {
+        var _root = doc.documentElement,
+                resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                resizeCallback = function () {
+                    var clientWidth = _root.clientWidth,
+                            fontSize = 20;
+                    if (!clientWidth) return;
+                    if(clientWidth < 640) {
+                        fontSize = 20 * (clientWidth / 320);
+                    } else if (clientWidth >= 640 && clientWidth < 768) {
+                        fontSize = 20 * (640 / 320);
+                    } else {
+                        fontSize = 20;
+                    }
+                    _root.style.fontSize = fontSize + 'px';
+                };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvent, resizeCallback, false);
+        doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+    })(document, window);
+    /* end root fontSize */
+</script>
+<script>
+/* --- API获取签名信息 begin --- */
+    var _config = null; // 定义全局变量_config，初始值为null，用来接收API获取到的签名信息
+    var getConfig = $.ajax({
+        type: 'POST',
+        url: '获取企业签名的API，后台提供',
+        data: {
+            agentId: 109243825,
+            url: '这是你开发微应用页面的线上地址，一般是由钉钉管理员配置的。',
+        },
+        dataType: 'json',
+        success: function(data){
+            console.log('---success-post-dingInfo---');
+            if(data.status){
+                _config = data.data;
+                // alert('2. API获取签名信息：'+JSON.stringify(_config));
+            }else{
+                dd.device.notification.alert({
+                    message: "Data error: failed to get signature.",
+                    title: "Huooo",
+                    buttonName: "OK"
+                });
+            }
+        },
+        error: function(data){
+            dd.device.notification.alert({
+                message: "API error: failed to API request.",
+                title: "Huooo",
+                buttonName: "OK"
+            });
+        },
+        complete: function(data){
+            // alert('3. 请求完成时：'+JSON.stringify(_config));
+            DDConfig(_config);
+        }
+    });
+    // alert('1. API请求开始：'+JSON.stringify(getConfig));
+/* --- end API获取签名信息 --- */
+/* --- DD Config Function --- */
+    function DDConfig(_config){
+        // 弹出DD全局变量
+        // alert('4. DD全局变量：'+JSON.stringify(dd));
+        // 配置DD签名等相关信息
+        dd.config({
+            agentId : _config.agentId,
+            corpId : _config.corpId,
+            timeStamp : _config.timeStamp,
+            nonceStr : _config.nonceStr,
+            signature : _config.signature,
+            jsApiList : [ 
+                'runtime.info', 
+                'biz.contact.choose',
+                'device.notification.confirm', 
+                'device.notification.alert',
+                'device.notification.prompt', 
+                'device.notification.toast',
+                'biz.ding.post',
+                'biz.util.openLink',
+                'device.geolocation.get',
+                'biz.util.scan',
+                'biz.user.get',
+                'biz.navigation.close',
+                'biz.util.open',
+                'biz.chat.chooseConversationByCorpId'
+            ]
+        });
+        dd.ready(function(){
+            // alert('5. DD begin...');
+            // dd.runtime.permission.requestAuthCode({
+            //     corpId : _config.corpId,
+            //     onSuccess : function(info) {
+            //         alert('authcode: ' + info.code);
+            //     },
+            //     onFail : function(err) {
+            //         alert('fail: ' + JSON.stringify(err));
+            //     }
+            // }); // 因为可以借用DD接口拿到简单的用户信息，此次需求不需要详细用户信息，即可不做免登陆操作
+            dd.biz.user.get({
+                onSuccess: function (info) {
+                    // alert('6. userGet success: ' + JSON.stringify(info));
+                    // alert('7. user nickname: ' + JSON.stringify(info.nickName));
+                    $('#nickname').val(info.nickName);
+                },
+                onFail: function (err) {
+                    dd.device.notification.alert({
+                        message: "DD userGet fail: " + JSON.stringify(err),
+                        title: "Huooo",
+                        buttonName: "OK"
+                    });
+                }
+            });
+        });
+        dd.error(function(err) {
+            dd.device.notification.alert({
+                message: "DD error: " + JSON.stringify(err),
+                title: "Huooo",
+                buttonName: "OK"
+            });
+        });
+    }
+/* --- end DD API --- */
+/* --- 提交反馈信息 begin --- */
+    $(document).on('click', '.btn-submit', function(){
+        var nickname = $('#nickname').val(),
+            feedback = $('#feedback').val();
+        if(nickname===''){
+            dd.device.notification.alert({
+                message: "Please enter your nickname.",
+                title: "Huooo",
+                buttonName: "OK"
+            });
+            return false;
+        }
+        if(feedback===''){
+            dd.device.notification.alert({
+                message: "Please enter your feedback.",
+                title: "Huooo",
+                buttonName: "OK"
+            });
+            return false;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '提交表单信息的API，后台提供',
+            data:{
+                nickname: nickname,
+                feedback: feedback
+            },
+            dataType: 'json',
+            success: function(data){
+                console.log('success-submit-feedback');
+                if(data.status){
+                        // alert('8. 提交内容：'+ nickname +','+ feedback );
+                        dd.device.notification.alert({
+                            message: "Success. Thank you.",
+                            title: "Huooo",
+                            buttonName: "OK",
+                            onSuccess: function(){
+                                $('#feedback').val('');
+                            },
+                            onFail: function(){}
+                        });
+                        
+                }else{
+                    alert('Something is error.Please submit again. Thank you.');
+                }
+            },
+            error: function(data){
+                console.log('error-submit-feedback');
+            }
+        })
+    });
+/* --- end 提交反馈信息 --- */
+</script>
+<script>
+    
+</script>
+</body>
+</html>
