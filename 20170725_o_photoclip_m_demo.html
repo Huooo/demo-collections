@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Huooo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="wb:webmaster" content="ccb8642eee5d3a6f" />
+    <meta name="description" content="Huooo">
+    <meta name="author" content="Huooo">
+    <meta property="wb:webmaster" content="ccb8642eee5d3a6f" />
+    <title>Huooo</title>
+
+    <link rel=" shortcut icon" href="">
+    
+    <!-- css files -->
+    <!-- css style -->
+    <style>
+        body{
+            font-size: .6rem;
+        }
+        p,ul,li,ol{
+            margin: 0;padding: 0;
+        }
+
+        .demo{
+            width: 80%;min-height: 18rem;margin: 0 auto;
+        }
+        .font-c-light{
+            color:#888;
+        }
+        .footer{
+            width:100%;
+            text-align:center;
+        }
+
+        
+        .pick-img-wrapper{
+            position: relative;
+            display: inline-block;
+        }
+        .pick-img-btn, .up-img-btn{
+            display: inline-block;width: 3rem;height: 1.5rem;margin: .8rem auto;
+            color: #fff;text-align: center;line-height: 1.5rem;
+            background-color: #4bbcb7;border-radius: 5px;
+            cursor: pointer;
+        }
+        .pick-img-file{
+            position: absolute;top: 0;left: 0;
+            display: inline-block;width: 3rem;height: 1.5rem;margin: .8rem auto;
+            background-color: #eee;opacity: 0;
+        }
+        .pick-img-modal{
+            position: fixed;top: 0;left: 0;bottom: 0;right: 0;
+            display: none;
+            width: 100%;height: 100%;
+            background-color: rgba(0,0,0,.7);
+        }
+        .modal-back{
+            position: absolute;top: 1rem;left: 1rem;z-index: 2;
+            color: #fff;cursor: pointer;
+        }
+        .pick-img-cut{
+            position: absolute;bottom: 3rem;left: 41%;z-index: 2;
+            display: inline-block;width: 3rem;height: 1.5rem;
+            color: #fff;text-align: center;line-height: 1.5rem;
+            background-color: #4bbcb7;border-radius: 5px;
+            cursor: pointer;
+        }
+        .pick-area{
+            width: 100%;height: 100%;min-height: 300px;
+        }
+        .picked-area{
+            width: 300px;height: 200px;margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        
+        .loading-wrapper{
+            position: absolute;top: 50%;left: 45%;z-index: 5;
+            display: none;
+        }
+        .loading-item{
+            display: inline-block;width: 8px;height: 8px;
+            background-color: #4bbcb7;
+            border-radius: 50%;
+        }
+        .loading-item1{
+            animation: loading1 1s linear infinite;
+        }
+        .loading-item2{
+            animation: loading2 1s linear infinite;
+        }
+        .loading-item3{
+            animation: loading3 1s linear infinite;
+        }
+        @keyframes loading1{
+            0%{opacity: 0;}
+            30%{opacity: 1;}
+            100%{opacity: 1;}
+        }
+        @keyframes loading2{
+            0%{opacity: 0;}
+            30%{opacity: 0;}
+            60%{opacity: 1;}
+            100%{opacity: 1;}
+        }
+        @keyframes loading3{
+            0%{opacity: 0;}
+            60%{opacity: 0;}
+            90%{opacity: 1;}
+            100%{opacity: 1;}
+        }
+    </style>
+</head>
+<body>
+    <h1>移动端图片处理</h1><hr>
+    
+    <div class='demo'>
+        <div id='view' class='picked-area'></div>
+        <div class='pick-img-wrapper'>
+            <span class='pick-img-btn'>选择图片</span>
+            <input id='file' class='pick-img-file' type="file" accept="image/*" >
+            <span class='up-img-btn j-up-img'>上传图片</span>
+        </div>
+        <div class='pick-img-modal'>
+            <b class='modal-back j-modal-back'>BACK</b>
+            <span id="clipBtn" class='pick-img-cut'>截取</span>
+            <div id="clipArea" class='pick-area'></div>
+        </div>
+        <div class='loading-wrapper'>
+            <span class='loading-item loading-item1'></span>
+            <span class='loading-item loading-item2'></span>
+            <span class='loading-item loading-item3'></span>
+        </div>
+    </div>
+        
+        
+    <footer class='footer'>
+        <hr><p><span class='font-c-light'>BY</span> Huooo </p><p><span class='font-c-light'>AT</span> 2017-07-21 21:00:00</p>
+    </footer>
+    
+    <!-- js files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://github.com/baijunjie/PhotoClip.js/js/iscroll-zoom.js"></script>
+    <script src="https://github.com/baijunjie/PhotoClip.js/js/hammer.min.js"></script>
+    <script src="https://github.com/baijunjie/PhotoClip.js/js/lrz.all.bundle.js"></script>
+    <script src="https://github.com/baijunjie/PhotoClip.js/js/PhotoClip.min.js"></script>
+    <!-- js script -->
+    <script>
+        'use strict';
+
+        $(document).ready(function(){
+
+            var cutImgBase64 = null; // 截图的base64编码
+
+            var cutImg = new PhotoClip('#clipArea', {
+                size: [300, 200],
+                file: '#file',
+                view: '#view',
+                ok: '#clipBtn',
+                loadStart: function() {
+                    console.log('开始读取照片');
+
+                    $('.pick-img-modal').show();
+                    $('.loading-wrapper').show();
+                },
+                loadComplete: function() {
+                    console.log('照片读取完成');
+
+                    $('.loading-wrapper').hide();
+                },
+                done: function(dataURL) {
+                    console.log('照片裁剪完成');
+
+                    $('.pick-img-modal').hide();
+                    cutImgBase64 = dataURL;
+                },
+                fail: function(msg) {
+                    console.log('照片裁剪失败');
+
+                }
+            });
+
+            $(document).on('click', '.j-up-img', function(){
+
+                if(!cutImgBase64){
+                    alert('请先上传图片');
+                }
+
+                // 法1. 将base64先转码为blob对象，然后用FormData封装传给后台，但是FormData在移动端有兼容性问题
+                // var blob = convertBase64UrlToBlob(cutImgBase64);
+                // var myData = new FormData(this.form);
+                // myData.append('imgUrl', blob);
+                // console.log(myData.get('imgUrl'));
+
+                // 法2. 直接将base64上传七牛，官方有提供API
+
+                alert('success');
+                $('#view').css({'background-image': ''});
+            }); 
+
+            $(document).on('click', '.j-modal-back', function(){
+                $('.pick-img-modal').hide();
+            })           
+
+
+            /**
+             * 将以base64的图片url数据转换为Blob
+             * @param urlData
+             * 用url方式表示的base64图片数据
+             */
+            function convertBase64UrlToBlob(urlData){
+                
+                var bytes=window.atob(urlData.split(',')[1]);        //去掉url的头，并转换为byte
+                
+                //处理异常,将ascii码小于0的转换为大于0
+                var ab = new ArrayBuffer(bytes.length);
+                var ia = new Uint8Array(ab);
+                for (var i = 0; i < bytes.length; i++) {
+                    ia[i] = bytes.charCodeAt(i);
+                }
+
+                return new Blob( [ab] , {type : 'image/jpg'});
+            }
+        });
+
+        // rem function
+        (function (doc, win) {
+            var _root = doc.documentElement,
+                resizeEvent = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                resizeCallback = function () {
+                    var clientWidth = _root.clientWidth,
+                        fontSize = 20;
+                    if (!clientWidth) return;
+                    if(clientWidth < 769) {
+                        fontSize = 20 * (clientWidth / 320);
+                    } else {
+                        fontSize = 20;
+                    }
+                    _root.style.fontSize = fontSize + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvent, resizeCallback, false);
+            doc.addEventListener('DOMContentLoaded', resizeCallback, false);
+        })(document, window);
+    </script>
+</body>
+</html>
