@@ -10,8 +10,10 @@
 
 ### 分支
  - **查看**
-    > [L] git branch 
-    > [R] git branch -a
+    ```ruby
+    [L] git branch 
+    [R] git branch -a
+    ```
  - **创建**： [L] git branch master / [R] git push origin master
  - **切换/检出**： git checkout develop
  - **新建并切换**： git checkout -b develop
