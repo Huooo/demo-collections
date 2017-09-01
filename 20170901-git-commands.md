@@ -4,33 +4,20 @@
  - 旨在记录与学习。
 
 ### 初步
- - **克隆** - git clone https://github.com/Huooo/demo-collections.git
+ - **克隆**： git clone https://github.com/Huooo/demo-collections.git
 
 ### 分支
- - **查看** 
-    - [*local*] git branch 
-    - [*remote*] git branch -a
- - **创建** 
-    - [*local*] git branch master 
-    - [*remote*] git push origin master
- - **切换/检出** 
-    - git checkout develop
- - **新建并切换** 
-    - git checkout -b develop
- - **删除** 
-    - [*local*] git branch -d develop 
-    - [*local*] git branch -D develop 
-    - [*remote*] git push origin --delete develop
+ - **查看**： [L] git branch / [R] git branch -a
+ - **创建**： [L] git branch master / [R] git push origin master
+ - **切换/检出**： git checkout develop
+ - **新建并切换**： git checkout -b develop
+ - **删除**： [L] git branch -d develop / [L] git branch -D develop / [R] git push origin --delete develop
 
 ### 日志
- - **普通** 
-    - git log
- - **数量** 
-    - git log -10
- - **一行** 
-    - git log --oneline
- - **分支标签** 
-    - git log --decorate
+ - **普通**： git log
+ - **数量**： git log -10
+ - **一行**： git log --oneline
+ - **分支标签**： git log --decorate
 
 
 
