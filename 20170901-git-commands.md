@@ -1,7 +1,7 @@
 # Git Commands
  - 好记性不如烂笔头。
  - 我也实在是受不了我自己的记忆力了。旨在记录与学习。
- - [L] -> local; [R] -> remote
+ - [L] -> local； [R] -> remote；[A] -> all
 
 
 
@@ -15,7 +15,8 @@
  - **查看**
     ```ruby
     [L] git branch 
-    [R] git branch -a
+    [R] git branch -r
+    [A] git branch -a
     ```
 
  - **创建** 

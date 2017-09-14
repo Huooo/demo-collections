@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="Huooo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="wb:webmaster" content="ccb8642eee5d3a6f" />
+    <meta name="description" content="Huooo">
+    <meta name="author" content="Huooo">
+    <meta property="wb:webmaster" content="ccb8642eee5d3a6f" />
+    <title>Huooo</title>
+
+    <link rel=" shortcut icon" href="">
+    
+    <!-- css style -->
+    <style>
+        .container{width:80%;margin:0 auto;}
+        .font-c-light{color:#aaa;}
+    </style>
+</head>
+<body>
+    <h1>原生JS-Array</h1><hr>
+    <div class='container'>
+        <ul>
+            <li>
+                <h3>Properties——Array.length</h3>
+                <div>
+                    <div class='font-c-light'>用处：</div>
+                    <ul>
+                        <li>在数组遍历时，可以作为终止循环的条件，这是一个好习惯，尤其实在数组中有大量数据的时候。</li>
+                        <li>顺延截断数组。简单粗暴的方法，一般不会使用。限制了数组的长度。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.form( arrayLike[, mapFn[, thisArg]] )</h3>
+                <div>
+                    <div class='font-c-light'>用处：</div>
+                    <ul>
+                        <li>可将array-like或者iterable objects转为数组，同时可借用第二参数（mapFn）做响应的数据操作。</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class='font-c-light'>注意：</div>
+                    <ul>
+                        <li>这个存在浏览器兼容问题，不支持的浏览器需要自写原型。<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from?v=example">参考</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.isArray( obj )</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>判断是否是Array</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.of( element0[, element1[, ...[, elementN]] )</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>将参数转为数组</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class='font-c-light'>注意：</div>
+                    <ul>
+                        <li>这个存在浏览器兼容问题，不支持的浏览器需要自写原型。<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of?v=example">参考</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.concat( value1[, value2[, ...[, valueN]]] )</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>合并两个或者多个数组</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-c-light">注意：</div>
+                    <ul>
+                        <li>不会去重；前者+后者，顺序合并；原参数不变，产生新的数组</li>
+                        <li>Array和String都有这个方法，concat会向左看齐，以左边的数据类型为主，连接右边的参数。</li>
+                        <li>concat的操作，是同级合并的。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.copyWithin( target, start, end )</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>用于在数组内部进行复制</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class='font-c-light'>注意：</div>
+                    <ul>
+                        <li>这里的arguments在数组中是下标值，但是在example中科借用.call时间间接对一个Object绑定.copyWithin()，此时的arguments是Object的key，复制的是Object的value。进一步理解，Array就是一个特殊的Object。</li>
+                        <li>这个存在浏览器兼容问题，不支持的浏览器需要自写原型。<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin?v=example">参考</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><hr>Iteration methods——迭代方法<hr></li>
+            <li>
+                <h3>Methods——Array.prototype.keys()</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>返回一个新的数组迭代对象，新的数组迭代对象里面包含之前数组的所有key。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.values()</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>返回一个新的数组迭代对象，新的数组迭代对象里面包含之前数组的所有value。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.entries()</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>返回一个新的数组迭代对象，新的数组迭代对象里面包含之前数组key/value。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.forEach()</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>适用于，对数组的每个元素有相同操作。</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-c-light">注意：</div>
+                    <ul>
+                        <li>启动forEach之后，添加原数组的元素在forEach内不会被访问，但是添加可执行。</li>
+                        <li>启动forEach之后，删除原数组的元素在forEach内会起作用，按照正常的数组遍历。</li>
+                        <li>启动forEach之后，循环不会被终止或跳出循环，除非强制抛出异常。</li>
+                        <li>个人认为，如果必须要完全遍历可以采用forEach，如果只是判断，不要采用forEach，因为return false阻止不了循环。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.every()</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>数组所有元素都满足时返回true，否则返回false。</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-c-light">注意：</div>
+                    <ul>
+                        <li>与forEach同，添加不会被访问，删除有效。</li>
+                        <li>但是<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/every">MDN</a>说every不会改变原数组，不是很理解。</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <h3>Methods——Array.prototype.some()</h3>
+                <div>
+                    <div class="font-c-light">用处：</div>
+                    <ul>
+                        <li>数组只要有一个元素满足时返回true，否则返回false。</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="font-c-light">注意：</div>
+                    <ul>
+                        <li>与forEach同，添加不会被访问，删除有效。</li>
+                        <li>但是<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/some">MDN</a>说some不会改变原数组，不是很理解。</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li>
+                <h3>Tips——扁平化数组</h3>
+                <div>
+                    <span class='font-c-light'>[ 1, 3, 4, 5, [ 6, [ 0, 1, 5 ], 9 ], [ 2, 5, [ 1, 5 ] ], [ 5 ] ]</span> 
+                    => 
+                    <span>[1, 3, 4, 5, 6, 0, 1, 5, 9, 2, 5, 1, 5, 5]</span>
+                </div>
+            </li>
+            <li>
+                <h3>Tips——数组转字符串</h3>
+                <div>
+                    <span class="font-c-light">[ 'a', 'b', 'c', 'd', 'e' ]</span>
+                    =>
+                    <span>' abcde '</span>
+                </div>
+                <div>
+                    <span class="font-c-light">[ { name: 'Huooo' } ]</span>
+                    =>
+                    <span>' [ { "name": "Huooo" } ] '</span>
+                </div>
+            </li>
+            <li>
+                <h3>Tips——生成序列数组</h3>
+                <div>
+                    <span class="font-c-light">[ ]</span>
+                    =>
+                    <span>[ 0, 1, 2, ..., N-1]</span>
+                </div>
+            </li>
+            <li>
+                <h3>Tips-数组打乱</h3>
+                <div>
+                    <span class="font-c-light">[ 'a', 'b', 'c', 'd', 'e' ]</span>
+                    =>
+                    <span>[ "b", "c", "d", "e", "a" ]</span>
+                </div>
+            </li>
+            <li>
+                <h3>Tips-数组去重</h3>
+                <div>
+                    <span class="font-c-light">[ 'a', 'b', 'c', '1', 0, 'c', 1, '', 1, 0, 'b', 'd', 'b', 'c' ]</span>
+                    =>
+                    <span>[ "a", "b", "c", "1", 0, 1, "", "d" ]</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- js files -->
+
+    <!-- js script -->
+    <script>
+    /* --- Array prototype --- */
+    let arr = new Array();
+    console.log(arr);
+    console.log('------------------------------------');
+
+    console.log('----------Array.length------------');
+
+        let demo_proto_1 = [ 1, 2, 3, 4, 5];
+
+        // 用处1
+        for(let i=0,iLens=demo_proto_1.length;i<iLens;i++){
+            console.log( 'Array.length-用处1：'+i );
+        }
+        // 用处2
+        demo_proto_1.length = 3;
+
+        console.log( demo_proto_1 ); // [1, 2, 3]
+
+    console.log('----------Array.from()------------');
+
+        let demo_proto_2 = 'Huooo',
+            result_proto_2 = Array.from(demo_proto_2),
+            demo_proto_3 = new Set(['Huooo',window]),
+            result_proto_3 = Array.from(demo_proto_3),
+            demo_proto_4 = new Map([ ['name','Huooo'],['age','23'] ]),
+            result_proto_4 = Array.from(demo_proto_4),
+            result_proto_5 = Array.from( [1,2,3,4,5], x => x );
+            result_proto_6 = Array.from( {length:5}, (v,i) => i );
+
+        console.log( result_proto_2 ); // Array => ["H", "u", "o", "o", "o"]
+        console.log( demo_proto_3 );
+        console.log( result_proto_3 ); // Array => ["Huooo", Window]
+        console.log( demo_proto_4 ); 
+        console.log( result_proto_4 ); // Array => [ ['name','Huooo'],['age','23'] ]
+        console.log( result_proto_5 ); // Array => [1, 2, 3, 4, 5]
+        console.log( result_proto_6 ); // Array => [0, 1, 2, 3, 4]
+
+        function fun_proto_1(){
+            return Array.from(arguments);
+        }
+
+    console.log('----------Array.isArray()----------');
+
+        // all following calls return true
+        console.log( Array.isArray([]) );
+        console.log( Array.isArray([1]) );
+        console.log( Array.isArray(new Array()) );
+
+        // Little known fact: Array.prototype itself is an array:
+        console.log( Array.isArray(Array.prototype) ); 
+
+        // all following calls return false
+        console.log( Array.isArray() );
+        console.log( Array.isArray({}) );
+        console.log( Array.isArray(null) );
+        console.log( Array.isArray(undefined) );
+        console.log( Array.isArray(17) );
+        console.log( Array.isArray('Array') );
+        console.log( Array.isArray(true) );
+        console.log( Array.isArray(false) );
+        console.log( Array.isArray({ __proto__: Array.prototype }) );
+
+    console.log('----------Array.of()---------------');
+
+        console.log( Array.of(1) );         // [1]
+        console.log( Array.of(1, 2, 3) );   // [1, 2, 3]
+        console.log( Array.of(undefined) ); // [undefined]
+        console.log( Array.of('a','b','c') );
+
+    console.log('----------Array.prototype.concat()------------');
+
+        let demo_proto_7 = [1,3,5,1,2],
+            demo_proto_8 = [5,2,1,7,9],
+            demo_proto_9 = 'test',
+            demo_proto_10 = 356,
+            demo_proto_11 = {'name':'Huooo'},
+            demo_proto_12 = [ [1,2], 3 ];
+
+        console.log( demo_proto_7.concat(demo_proto_8) ); // [1, 3, 5, 1, 2, 5, 2, 1, 7, 9]
+        console.log( demo_proto_8.concat(demo_proto_7) ); // [5, 2, 1, 7, 9, 1, 3, 5, 1, 2]
+        console.log( demo_proto_7.concat(demo_proto_9) ); // [1, 3, 5, 1, 2, "test"]
+        console.log( demo_proto_9.concat(demo_proto_9) ); // 'testtest'
+        console.log( demo_proto_9.concat(demo_proto_10) ); // 'test356'
+        console.log( demo_proto_9.concat(demo_proto_7) ); // 'test1,3,5,1,2'
+        console.log( demo_proto_7.concat(demo_proto_11) ); // [1, 3, 5, 1, 2, {'name':'Huooo'}]
+        console.log( demo_proto_9.concat(demo_proto_11) ); // 'test[object Object]'
+        console.log( demo_proto_7.concat(demo_proto_8,demo_proto_9,demo_proto_10,demo_proto_11) ); // [1, 3, 5, 1, 2, 5, 2, 1, 7, 9, "test", 356, {'name':'Huooo'}]
+        console.log( demo_proto_12.concat(demo_proto_7) ); // [[1,2], 3, 1, 3, 5, 1, 2]
+
+    console.log('----------Array.prototype.copyWithin()----------');
+
+        console.log( [].copyWithin.call(new Int32Array([1, 2, 3, 4, 5]), 0, 3, 4) ); // TypedArray => [4, 2, 3, 4, 5]
+        console.log( [].copyWithin.call({length: 5, 3: 1}, 0, 3) ); // Object => {0: 1, 3: 1, length: 5}
+
+    console.log('----------Array.prototype.keys()------------');
+        
+        let demo_proto_14 = [ 'Huooo', 'woman' ],
+            result_proto_14 = demo_proto_14.keys();
+
+        console.log( result_proto_14 );
+        console.log( result_proto_14.next() );
+
+    console.log('----------Array.prototype.entries()-------------');
+
+        let demo_proto_13 = ['Huooo','woman'],
+            result_proto_13 = demo_proto_13.entries();
+
+        console.log( result_proto_13 );
+        console.log( result_proto_13.next().value );
+        // console.log( result_proto_13.next().value );
+        for(let item of result_proto_13){
+            console.log('--- test ---');
+            console.log( item );
+        }
+
+    console.log('----------Array.prototype.forEach()-------------');
+
+        let demo_proto_15 = [ 1, 2, 'Huooo', 'Cici' ];
+        demo_proto_15.forEach(function ( value, index, arr) {
+            console.log( '--- forEach ---' );
+            if ( value === 2 ) {
+                console.log( value );
+                console.log( index );
+                console.log( arr );
+                arr.pop('Cici'); // 启动forEach之后，删除原数组的元素有效
+                arr.push('Hu Yan'); // 启动forEach之后，添加进数组的元素将不会被访问
+                console.log( arr );
+            } else {
+                console.log( '不符合' );
+                console.log( value );
+                return false;
+            }
+        });
+        console.log( demo_proto_15 );
+
+    console.log('----------Array.prototype.every()-------------');
+
+        let demo_proto_16 = [ 1, 2, 'Huooo', 'Cici' ];
+            result_proto_16 = demo_proto_16.every(function ( value, index, arr) {
+                console.log( '--- every ---' );
+                return value === 2;
+            });
+        console.log( demo_proto_16 );
+        console.log( result_proto_16 );
+
+    console.log('----------Array.prototype.some()-------------');
+
+        let demo_proto_17 = [ 1, 2, 'Huooo', 'Cici' ];
+            result_proto_17 = demo_proto_17.some(function ( value, index, arr) {
+                console.log( '--- some ---' );
+                return value === 2;
+            });
+        console.log( demo_proto_17 );
+        console.log( result_proto_17 );
+
+    console.log('------------扁平化数组--------------');
+        let demo_tips_1 = [ 1, 3, 4, 5, [ 6, [ 0, 1, 5 ], 9 ], [ 2, 5, [ 1, 5 ] ], [ 5 ] ];
+        // http://www.jianshu.com/p/619e34d69ef9
+        //使用toString,转化为字符串，然后可以直接使用split分割成扁平的字符串数组，最后再转化为整形数组
+        let result_tips_1 = demo_tips_1.toString().split(',').map(data=>+data);
+   
+        console.log( result_tips_1 );// Array => [1, 3, 4, 5, 6, 0, 1, 5, 9, 2, 5, 1, 5, 5]
+
+    console.log('-----------数组转字符串-------------');
+        let demo_tips_2 = [ 'a', 'b', 'c', 'd', 'e' ],
+            result_tips_2 = demo_tips_2.join(''),
+            demo_tips_3 = ['Huooo'],
+            result_tips_3 = demo_tips_3.join(),
+            demo_tips_4 = [{name:'Huooo'}],
+            result_tips_4 = demo_tips_4.join(),
+            demo_tips_5 = [{name:'Huooo'}],
+            result_tips_5 = JSON.stringify(demo_tips_5);
+
+        console.log( result_tips_2 ); // String => 'abcde'
+        console.log( result_tips_3 ); // String => 'abcde'
+        console.log( result_tips_4 ); // String => [object Object]
+        console.log( result_tips_5 ); // String => '[{"name":"Huooo"}]'
+
+    console.log('-----------生成序列数组-------------');
+        let result_tips_6 = Array.apply( null, { length: 3 } ).map( Function.call, Number );
+        console.log( result_tips_6 );
+
+    console.log('--------------数组打乱--------------');
+        let demo_tips_7 = [ 'a', 'b', 'c', 'd', 'e' ],
+            result_tips_7 = shuffle( demo_tips_7 );
+        console.log( JSON.stringify( result_tips_7 ) );
+
+        function shuffle ( arr ) {
+            let temporary, randomIndex;
+            for( let i = 0, lens = arr.length; i < lens; i++ ){
+                randomIndex = ~~( Math.random() * i );
+                temporary = arr[i];
+                arr[i] = arr[randomIndex];
+                arr[randomIndex] = temporary;
+            }
+            return arr;
+        }
+
+    console.log('--------------数组去重--------------');
+        let demo_tips_8 = [ 'a', 'b', 'c', undefined, null, '1', 0, 'c', 1, '', 1, 0, 'b', 'd', 'b', 'c', undefined, 0, './a', './b', './a' ],
+            demo_tips_9 = [ {'name': 'a'}, {'name': 'b'}, {'name': 'c'}, {'name': 'd'}, {'name': 'a'}];
+
+        console.log( demo_tips_8 );
+
+        function unique ( arr ) {
+            let i = 0;
+            while ( i < arr.length ) {
+                arr.indexOf( arr[i] ) !== i ? arr.splice( i, 1 ) : i = i + 1;
+            }
+            return arr;
+        }
+        // unique - 此法系个人思路。只叹自己太年轻，兼容与性能上都不够！
+
+        function unique1 ( arr ) {
+            let result = [...new Set( arr )]; // 可写为： var result = Array.from( new Set( arr ) );
+            return result; 
+        }
+        // unique1 - ES6新特性。兼容上，路还长；性能上，暂时没测出来。
+
+        function unique2 ( arr ) {
+            let result = [], hash = {};
+
+            for ( let i=0,lens=arr.length; i<lens; i++ ) {
+                let key = typeof arr[i] + '_' + arr[i]; 
+                if ( hash[key] !== 1 ) {
+                    result.push( arr[i] );
+                    hash[key] = 1;
+                }
+            }
+
+            return result;
+        }
+        // unique2 - 利用哈希对象的映射特性。兼容上，无障碍；性能上，好。缺点：空间换时间，哈希对象占空间。
+
+        function unique3 ( arr ) {
+            var result = [];
+
+            for ( let i=0,lens=arr.length; i<lens; i++ ) {
+                ( result.indexOf(arr[i]) === -1 ) && ( result.push(arr[i]) );
+            }
+
+            return result;
+        }
+        // unique3 - 利用一个空数组接手旧数组，同时不接受已有元素。兼容上，indexOf不兼容IE6-8；性能上，中。
+
+        function unique4 ( arr ) {
+
+            function onlyUnique ( value, index, self ) {
+                return self.indexOf(value) === index;
+            }
+
+            return arr.filter( onlyUnique );
+        }
+        // unique4 - 利用indexOf+filter。兼容上，两者多少都有兼容性问题。性能上，较差。
+
+         
+        console.log('--- Huooo ---');
+        console.log( unique( demo_tips_8 ) );
+        console.log('--- ES6 ---');
+        console.log( unique1( demo_tips_8 ) );
+        console.log('--- Object ---');
+        console.log( unique2( demo_tips_8 ) );
+        console.log('--- Array ---');
+        console.log( unique3( demo_tips_8 ) );
+        console.log('--- filter+indexOf ---');
+        console.log( unique4( demo_tips_8 ) );
+        console.log('--- [ Obeject, Object ] ---');
+        console.log( unique( demo_tips_9 ) ); // 测试数组去重对数组内是对象的可行性 => 不可行 => 个人认为，对象的相等不仅仅与值有关，所以不能去重很正常，因为这两个值相等的对象并不全等。
+
+
+
+    /* --- test --- */
+    console.log('------------ test ----------------');
+        // 测试'+data'对String转Number的可行性 => 可行。
+        // let demo_test_1 = '1';
+        // function transfrom(data){
+        //     return +data;
+        // }
+        // console.log(demo_test_1); // '1'
+        // console.log(typeof demo_test_1); // String
+        // console.log(transfrom(demo_test_1)); // 1
+        // console.log(typeof transfrom(demo_test_1)); // number
+
+        // 测试利用Set去重对数组内是对象的可行性 => 不可行 => 个人认为，对象的相等不仅仅与值有关，所以不能去重很正常，因为这两个值相等的对象并不一定全等
+        // var demo_test_2 = [{'name':'a'},{'name':'b'},{'name':'c'},{'name':'d'},{'name':'a'}];
+        // console.log(demo_test_2);
+        // function dedupe(arr){
+        //     return Array.from(new Set(arr));
+        // }
+        // console.log(dedupe(demo_test_2));
+
+        // 测试apply调用和Array的结合结果
+        let demo_test_3 = Array.apply(null, {length: 3}),
+            demo_test_4 = demo_test_3.map(Function.call, Number);
+        console.log( demo_test_3 ); // [ undefined, undefined, undefined ]
+        console.log( demo_test_4 ); // [ 0, 1, 2 ]
+
+        let demo_test_5 = Object.prototype.toString.call([ 1, 2, 3]),
+            demo_test_6 = Object.prototype.toString.call({ length: 3 }),
+            demo_test_7 = { length: 3 },
+            demo_test_8 = Array.apply( null, demo_test_7 );
+            demo_test_9 = demo_test_8.map( Function.call, Number );
+        console.log( demo_test_5 ); // String => '[ Object Array ]'
+        console.log( demo_test_6 ); // String => '[ Object Object ]'
+        console.log( demo_test_7 ); // Object => { length: 3 }
+        console.log( demo_test_7[0], demo_test_7[1], demo_test_7[2] ); 
+        //              ^ undefined     ^ undefined     ^ undefined   去检索一个对象中不存在的key，对应的value=undefined
+        console.log( demo_test_8 ); // [undefined, undefined, undefined]
+        console.log( demo_test_9 ); // [0, 1, 2]
+
+
+    </script>
+</body>
+</html>
+
