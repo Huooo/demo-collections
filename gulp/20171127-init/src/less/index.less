@@ -1,0 +1,21 @@
+*{
+	box-sizing: border-box;
+}
+html, body{
+	margin: 0;padding: 0;
+}
+
+.main{
+	padding-top: 50px;
+	text-align: center;
+
+	.bear{
+		width: 133px;
+		animation: bear 5s linear infinite;
+
+		@keyframes bear {
+			0%{ transform: rotate(0); }
+			100%{ transform: rotate(360deg); }
+		}
+	}
+}
