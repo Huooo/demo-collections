@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Huooo">
+    <meta name="author" content="Huooo">
+    <meta name="description" content="Huooo">
+    <title>Huooo</title>
+
+    <link rel=" shortcut icon" href="">
+    
+    <!-- css files -->
+    <!-- css style -->
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .header{
+            text-align: center;
+        }
+        .container{
+            width: 80%;min-height: 400px;margin: 0 auto;
+        }
+        .font-c-light{
+            color:#888;
+        }
+        .font-c-red{
+            color: #f00;
+        }
+        .footer{
+            width:100%;
+            text-align:center;
+        }
+
+        .demo-graparent{
+            width: 160px;height: 160px;
+            background-color: #eee;
+        }
+        .demo-parent{
+            width: 80px;height: 80px;
+            background-color: #eee;
+        }
+        .demo-children{
+            width: 40px;height: 40px;
+            background-color: #eee;
+        }
+
+        
+        .demo-yes-1{
+            position: relative;
+        }
+        .demo-yes-1-1{
+            position: absolute;top: 0;left: -10px;z-index: -1;
+            background-color: #f00;
+        }
+
+
+        .demo-yes-2{
+            position: relative;
+        }
+        .demo-yes-2-1{
+            position: absolute;top: 5px;left: 5px;z-index: 2;
+            background-color: #f00;
+        }
+        .demo-yes-2-2{
+            position: absolute;bottom: 5px;right: 5px;z-index: 1;
+            background-color: #00f;
+        }
+
+
+        .demo-yes-3{
+            position: relative;
+        }
+        .demo-yes-3-1{
+            position: absolute;top: 5px;left: 5px;z-index: 3;
+            background-color: #f00;
+        }
+        .demo-yes-3-1-1{
+            position: absolute;bottom: 2px;right: 2px;z-index: 11;
+            background-color: #4dd8ad;
+        }
+        .demo-yes-3-2{
+            position: absolute;bottom: 5px;right: 5px;z-index: 2;
+            background-color: #00f;
+        }
+        .demo-yes-3-2-1{
+            position: absolute;top: 2px;left: 2px;z-index: 12;
+            background-color: #f08b33;
+        }
+        .demo-yes-3-3{
+            position: absolute;bottom: 5px;left: 5px;z-index: 1;
+            background-color: #0f0;
+        }
+        .demo-yes-3-3-1{
+            position: fixed;top: 50%;left: 0;
+            width: 100%;
+            background-color: #bd3e85;
+        }
+
+        
+        .demo-no-1{
+            z-index: 1;
+        }
+        .demo-no-1-1{
+            z-index: -1;
+            background-color: #f00;
+        }
+
+        .demo-no-2{
+            position: relative;
+            transform: rotate(45deg);   
+        }
+        .demo-no-2-1{
+            position: fixed;top: 0;left: 0;
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="header"> z-index </h1><hr>
+    
+    <div class='container'>
+
+        <h3><b>z-index</b></h3>
+        <ul>
+            <li>定义了一个具有定位属性的元素以及该元素的子代元素在页面三维中 z 轴的层级顺序。</li>
+            <li>
+                <span>z-index: auto | &lt;integer&gt;</span> <br>
+                <span class="font-c-light">1. 当z-index值为auto的时候，元素不会建立一个新的本层结构的堆层。该元素的堆层级别和其父元素的相同。</span> <br>
+                <span class="font-c-light">2. 当z-index值为&lt;integer&gt;的时候，会建立一个堆层级别（即使z-index=0）。这就是说，子代元素的堆层与这个元素之外元素的堆层都不做比较。</span>
+            </li>
+        </ul>
+        
+        <hr><h3><b>有效的z-index</b></h3>      
+        <ul>
+            <li>
+                <p>
+                    <span>对于父子元素关系。</span> <br>
+                    <span class="font-c-light">1. 如果父元素z-index有效，则无论子元素z-index值为多少，子元素均会在父元素之上。</span> <br>
+                    <span class="font-c-light">2. 如果父元素z-index无效，则无论子元素z-index（小于0）时，子元素会在父元素之下，否则，子级元素均会在父级元素之上。</span>
+                </p>
+                <div class="demo-parent demo-yes-1">
+                    <div class="demo-children demo-yes-1-1"></div>
+                </div>
+            </li>
+            <li>
+                <p>
+                    <span>对于同一父元素下的兄弟元素关系。</span> <br>
+                    <span class="font-c-light">1. 由z-index值决定z轴层级。</span> <br>
+                    <span class="font-c-light">2. 在兄弟间z-index无效或者z-index相同的时候，由文档流的顺序决定z轴层级，就近原则。</span>
+                </p>
+                <div class="demo-parent demo-yes-2">
+                    <div class="demo-children demo-yes-2-1"></div>
+                    <div class="demo-children demo-yes-2-2"></div>
+                </div>
+            </li>
+            <li>
+                <p>
+                    <span>对于非同一父元素下的兄弟元素关系。</span> <br>
+                    <span class="font-c-light">1. 非同一父元素的下的子元素的z轴层级受其自己的父元素的z轴层级影响。</span>  
+                </p>
+                <div class="demo-graparent demo-yes-3">
+                    <div class="demo-parent demo-yes-3-1">
+                        <div class="demo-children demo-yes-3-1-1">1</div>
+                    </div>
+                    <div class="demo-parent demo-yes-3-2">
+                        <div class="demo-children demo-yes-3-2-1">2</div>
+                    </div>
+                    <div class="demo-parent demo-yes-3-3">
+                        <!-- <div class="demo-children demo-yes-3-3-1">3 - 这个是为了测试fixed定位的z轴层级关系，依然受到父元素的z-index影响。</div> -->
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <hr><h3><b>无效的z-index</b></h3>
+        <ul>
+            <li>
+                <p>对于无定位的DOM，z-index无效</p>
+                <div class="demo-parent demo-no-1">
+                    <div class="demo-children demo-no-1-1"></div>
+                </div>
+            </li>
+            <li>
+                <p>对于非同一父元素下的子元素之间，要考虑到父元素的z-index，否则一味修改子元素z-index无效。</p>
+            </li>
+        </ul>
+
+        <hr>
+        <div class="font-c-red">
+            <p>以上css样式值，均以浏览器中计算后的值为主。以免有全局样式影响而不自知。</p>
+        </div>
+    </div>
+        
+        
+    <footer class='footer'>
+        <hr><p><span class='font-c-light'>BY</span> Huooo </p><p><span class='font-c-light'>AT</span> 2018-01-19 15:00:00</p>
+    </footer>
+    
+    <!-- js files -->
+    <!-- js script -->
+</body>
+</html>

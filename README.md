@@ -3,6 +3,7 @@ These demos are my accumulation on working or learning others' plugin.
 
 ### Accroding to file's name
 
+- **css-basis**: 学习css的基础时留下的笔记。
 - **gulp**: 学习gulp的打包操作，主学于[gulp详细入门教程](http://www.ydcss.com/archives/18)。
 - **20170526-js-array.html**: 学习记录js-array的基础，主学于[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)。
 - **20170701-dd-jsapi-m-demo**: 钉钉微应用开发，详细步骤在[SF](https://segmentfault.com/a/1190000010010464)。
