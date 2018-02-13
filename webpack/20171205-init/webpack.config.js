@@ -2,8 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-
-	devtool: 'eval-source-map',						// 调试工具
 	
 	entry: __dirname + '/app/main.js',				// [app] - 唯一的入口文件
 	
@@ -12,12 +10,23 @@ module.exports = {
 		filename: 'bundle.js'						// [dev] - 打包之后的文件名
 	},
 
-	devServer: {									
+	devServer: {		
 		contentBase: './dev',						// 设置为dev文件下提供本地服务器
 		port: 8888,									// 监听端口号
 		inline: true,								// 实时刷新
-		historyApiFallback: false					// 不重定向跳转
+		historyApiFallback: false,					// 不重定向跳转
+		proxy: {
+			"/api": {
+			    target: "http://rap2api.taobao.org/app/mock/5245/", // http://rap2api.taobao.org/app/mock/5245/
+			    changeOrigin: true,
+			    pathRewrite: {
+		        	'^/api': ''
+		        }
+			}
+		}
 	},
+
+	devtool: 'eval-source-map',						// 调试工具
 
 	module: {
 		rules: [

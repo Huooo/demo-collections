@@ -4,13 +4,14 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
 
-	devtool: 'null',
-
 	entry: __dirname + '/app/main.js',
+
 	output: {
 		path: __dirname + '/build',
 		filename: 'bundle-[hash].js'
 	},
+
+	devtool: 'null',
 
 	module: {
 		rules: [

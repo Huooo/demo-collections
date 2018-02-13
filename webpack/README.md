@@ -10,10 +10,10 @@
 
 ### 核心
 
-- 入口(entry)
-- 输出(output)
-- loader
-- 插件(plugins)
+- 入口(entry)：webpack的入口文件( string | object | array )。
+- 输出(output)：webpack输出打包的bundles文件( string )。
+- loader: 用于对模块的源代码进行转换。
+- 插件(plugins)：插件功能比较强大，可根据需要处理各种任务。
 
 
 ### 链接
