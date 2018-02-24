@@ -17,10 +17,10 @@ module.exports = {
 		historyApiFallback: false,					// 不重定向跳转
 		proxy: {
 			"/api": {
-			    target: "http://rap2api.taobao.org/app/mock/5245/", // http://rap2api.taobao.org/app/mock/5245/
+			    target: "http://rap2api.taobao.org/app/mock/5245/",
 			    changeOrigin: true,
 			    pathRewrite: {
-		        	'^/api': ''
+		        	'^/api': ''						// 将数据请求路径中的'/api'重写为''
 		        }
 			}
 		}
