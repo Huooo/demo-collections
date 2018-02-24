@@ -79,9 +79,11 @@
 ```
 
 
-### 解释
+### 思路
 
-- ...
+- 先初始化一个 package.json 文件，然后在这个安装文件上来配置所需依赖
+- 配置 webpack.config.js / webpack.production.config.js 文件
+- 根据配置文件完善开发环境/生产环境文件结构
 
 
 ### 结构
@@ -117,7 +119,7 @@
 
 ### 扩展
 
-- ...
+- [DevServer](https://doc.webpack-china.org/configuration/dev-server/)
 
 
 ### 项目
