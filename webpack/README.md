@@ -20,6 +20,7 @@
 
 - [官方网址](https://webpack.js.org/)
 - [学习资源](https://segmentfault.com/a/1190000006178770) - 非常感谢，很适合入门，较为详细，且作者有维护
+- [学习资源](https://github.com/zhangwang1990/blogs/blob/master/articles/webpack%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5.md) - webpack从入门到工程实践，涉及较深一步。
 
 
 ### 安装

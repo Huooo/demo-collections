@@ -1,0 +1,36 @@
+html {
+  box-sizing: border-box;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;padding: 10px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border-bottom: 2px solid #eee;
+}
+
+#root, .root{
+	padding: 10px;
+	background-color: #f00;
+}
+
+.root {
+	padding: 10px;
+	font-size: 24px;color: #fff;text-align: center;
+  	border: 3px solid #ccc;
+
+  	animation: root 2s infinite linear;
+}
+@keyframes root {
+	0%{
+		transform: translateY(0);
+	}
+	50%{
+		transform: translateY(10px);
+	}
+}
